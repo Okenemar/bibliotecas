@@ -11,7 +11,7 @@ public class Socio {
 	
 	public Socio(int id, String nombre, String apellido, String direccion, String poblacion, String provincia,
 			String dni) {
-		super();
+
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
