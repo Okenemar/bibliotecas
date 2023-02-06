@@ -64,5 +64,68 @@ public class GestorBBDD extends Conector{
 
 		return libros;	
 	}
+	public void insertarSocio(Socio socio) throws SQLException {
+		
+		PreparedStatement preparedSt = con.prepareStatement("INSERT INTO socios VALUES (null, ?,?,?,?,?,?)");
+
+		preparedSt.setString(1, socio.getNombre());
+		preparedSt.setString(2, socio.getApellido());
+		preparedSt.setString(3, socio.getDireccion());
+		preparedSt.setString(4, socio.getPoblacion());
+		preparedSt.setString(5, socio.getProvincia());
+		preparedSt.setString(6, socio.getDni());
+		
+		preparedSt.execute();
+		
+	}
+	public void eliminarSocio(int id) throws SQLException {
+		
+		PreparedStatement preparedSt = con.prepareStatement("DELETE FROM socios WHERE id = (?)");
+		
+		preparedSt.setInt(1, id);
+		
+		preparedSt.execute();
+		
+	}
+	public Socio getSocio(int id) {
+		return null;
+	}
+	
+	public void modificarSocio(Socio socio, int id) throws SQLException {
+		
+		PreparedStatement preparedSt = con.prepareStatement("UPDATE socios SET nombre=?, apellido=?, direccion=?, poblacion=?, provincia=?, dni=? WHERE id=?");
+		
+		preparedSt.setString(1, socio.getNombre());
+		preparedSt.setString(2, socio.getApellido());
+		preparedSt.setString(3, socio.getDireccion());
+		preparedSt.setString(4, socio.getPoblacion());
+		preparedSt.setString(5, socio.getProvincia());
+		preparedSt.setString(6, socio.getDni());
+		preparedSt.setInt(7, id);
+
+		preparedSt.executeUpdate();
+	}		
+
+	public ArrayList<Socio> mostrarSocios() throws SQLException {
+		Statement st = con.createStatement();
+		
+		String sentenciaSelect = "SELECT * FROM socios";
+		ResultSet resultado = st.executeQuery(sentenciaSelect);
+		ArrayList<Socio> socios = new ArrayList<Socio>();
+		while(resultado.next()) {
+			Socio socio = new Socio();
+			socio.setId(resultado.getInt("id"));
+			socio.setNombre(resultado.getString("nombre"));
+			socio.setApellido(resultado.getString("apellido"));
+			socio.setDireccion(resultado.getString("direccion"));
+			socio.setPoblacion(resultado.getString("poblacion"));
+			socio.setProvincia(resultado.getString("provincia"));
+			socio.setDni(resultado.getString("dni"));
+			
+			socios.add(socio);
+		}
+
+		return socios;	
+	}
 }
 	

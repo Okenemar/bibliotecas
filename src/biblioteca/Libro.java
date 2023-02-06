@@ -6,7 +6,7 @@ public class Libro {
 	private String autor;
 	private int numPaginas;
 	
-	public Libro(int id, String titulo, int numPaginas) {
+	public Libro(int id, String titulo, String autor, int numPaginas) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -47,7 +47,7 @@ public class Libro {
 	
 	@Override
 	public String toString() {
-		return "Libros [id=" + id + ", titulo=" + titulo + ", numPaginas=" + numPaginas + "]";
+		return "Libros [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", numPaginas=" + numPaginas + "]";
 	}
 	
 }
